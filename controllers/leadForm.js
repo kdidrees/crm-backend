@@ -34,7 +34,6 @@ exports.LeadForm = (req, res) => {
         }
 
         // create and save the new lead
-
         const lead = new LeadModel(newLead);
         lead
           .save()
