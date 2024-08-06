@@ -1,19 +1,27 @@
-const XLSX = require("xlsx");
-const fs = require("fs");
-const path = require("path");
-const { BulkLead } = require("../models/leadSchema");
+const XLSX = require('xlsx');
+const fs = require('fs');
 
-const importLeadsFromExcel = async (filepath) => {
-  const workbook = XLSX.readFile(filepath);
-  const sheetName = workbook.SheetNames[0];
-  const sheet = workbook.Sheets[sheetName];
-  const data = XLSX.utils.json_to_sheet(sheet);
+const importLeadsFromExcel = async (filePath) => {
+  try {
+    // Read the file
+    const workbook = XLSX.readFile(filePath);
 
-  for (const row of data) {
-    await BulkLead.create(row); // clean up the file
+    // Get the first sheet
+    const sheetName = workbook.SheetNames[0];
+    const sheet = workbook.Sheets[sheetName];
+
+    // Convert sheet to JSON
+    const data = XLSX.utils.sheet_to_json(sheet);
+
+    console.log('Imported data:', data); // Log data for debugging
+
+    // Process data and save to database
+    // For example: await Lead.insertMany(data);
+
+  } catch (error) {
+    console.error('Error reading file:', error);
+    throw new Error('Error reading file');
   }
-
-  fs.unlinkSync(filepath);
 };
 
 module.exports = { importLeadsFromExcel };

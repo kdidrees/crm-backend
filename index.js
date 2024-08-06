@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const cors = require("cors");
 const leadRoute = require("./routes/leadRoute");
+const path = require('path')
 
 dotenv.config("./env");
 
@@ -27,6 +28,9 @@ async function ConnectDatabase() {
 }
 
 app.use("/api/leads", leadRoute);
+
+// server static files (uploads)
+app.use('/uploads',express.static(path.join(__dirname,'uploads')))
 
 app.listen(process.env.PORT, () => {
   console.log(`server running at port number ${process.env.PORT}`);
