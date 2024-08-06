@@ -7,6 +7,7 @@ const leadRoute = require("./routes/leadRoute");
 dotenv.config("./env");
 
 const app = express();
+
 // use middleware here
 app.use(express.json());
 app.use(

@@ -1,4 +1,5 @@
 const LeadModel = require("../models/leadformSchema");
+const BulkLead = require("../models/leadSchema");
 
 exports.LeadForm = (req, res) => {
   const {
