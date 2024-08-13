@@ -19,7 +19,6 @@ const importLeadsFromExcel = async (filePath) => {
     // Process data and save to database
     // For example: await Lead.insertMany(data);
 
- 
 
     await BulkLead.insertMany(data);
   } catch (error) {
@@ -29,3 +28,4 @@ const importLeadsFromExcel = async (filePath) => {
 };
 
 module.exports = { importLeadsFromExcel };
+
