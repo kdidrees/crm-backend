@@ -2,8 +2,9 @@ const path = require("path");
 const { importLeadsFromExcel } = require("../utils/importLeads");
 
 const uploadFile = async (req, res) => {
+  const file = req.file.filename;
   try {
-    const filePath = path.resolve(__dirname, '..', 'uploads', req.file.filename);
+    const filePath = path.resolve(__dirname, '..', 'uploads', file);
 
     console.log(__dirname,'kd dirname here')
 
@@ -17,3 +18,5 @@ const uploadFile = async (req, res) => {
 };
 
 module.exports = {uploadFile};
+
+
