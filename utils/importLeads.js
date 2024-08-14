@@ -2,7 +2,7 @@ const XLSX = require("xlsx");
 const fs = require("fs");
 const { BulkLead } = require("../models/leadSchema");
 
-const importLeadsFromExcel = async (filePath) => {
+const importLeadsFromExcel = async (filePath,headers) => {
   try {
     // Read the file
     const workbook = XLSX.readFile(filePath);
@@ -12,9 +12,9 @@ const importLeadsFromExcel = async (filePath) => {
     const sheet = workbook.Sheets[sheetName];
 
     // Convert sheet to JSON
-    const data = XLSX.utils.sheet_to_json(sheet, { header: ['name','email','phone'] });
+    const data = XLSX.utils.sheet_to_json(sheet, { header: headers });
 
-    console.log("Imported data:", data); // Log data for debugging
+    // console.log("Imported data:", data); // Log data for debugging
 
     // Process data and save to database
     // For example: await Lead.insertMany(data);
