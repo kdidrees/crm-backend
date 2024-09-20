@@ -14,7 +14,7 @@ const importLeadsFromExcel = async (filePath,headers) => {
     // Convert sheet to JSON
     const data = XLSX.utils.sheet_to_json(sheet, { header: headers });
 
-    // console.log("Imported data:", data); // Log data for debugging
+    console.log("Imported data:", data); // Log data for debugging
 
     // Process data and save to database
     // For example: await Lead.insertMany(data);
